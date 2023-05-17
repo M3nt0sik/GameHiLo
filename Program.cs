@@ -1,9 +1,12 @@
-﻿internal class Program
+﻿using GameHiLo;
+
+internal class Program
 {
+    
     private static void Main(string[] args)
     {
         Console.WriteLine("Witaj w HiLo!");
-        Console.WriteLine($"Odgadnij liczbe do {HiLOGame.MAXIMUM}.");
+        Console.WriteLine($"Odgadnij liczbe do {HiLoGame.MAXIMUM}.");
         HiLoGame.Hint();
         while (HiLoGame.GetPot() > 0)
         {

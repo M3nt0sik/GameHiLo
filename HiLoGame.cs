@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace GameHiLo
 {
-     internal class HiLoGame
+     static class HiLoGame
     {
         static Random random = new Random();
-        public int MAXIMUM = 10;
-        private int curentNumber = random.Next(1,11);
-        private int pot=MAXIMUM;
+        public const int  MAXIMUM = 10;
+        private static int curentNumber = random.Next(1, MAXIMUM + 1);
+        private static int pot=MAXIMUM;
+        
+        public static int GetPot() { return pot; }
 
-        public void Guess( bool higher)
+        public static void Guess( bool higher)
         {
-            int nextNumber = random.Next(1, 11);
+            int nextNumber = random.Next(1, MAXIMUM + 1);
             if (higher && nextNumber>=curentNumber)
             {
                 Console.WriteLine("Zgadles!!!");
@@ -31,11 +33,17 @@ namespace GameHiLo
                 Console.WriteLine("Niestety bledna odpowiedz");
                 pot--;
             }
+            curentNumber = nextNumber;
+            Console.WriteLine($"Aktualna wartosc {curentNumber}");
         }
-
-
-
-        
+        public static void Hint()
+        {
+            if (MAXIMUM / 2 >= curentNumber) {
+                Console.WriteLine($"Liczja mniejsza niz {MAXIMUM / 2}");
+            }
+            else { Console.WriteLine($"Liczba wieksza niz {MAXIMUM / 2}"); }
+            pot--;
+        }
 
 
     }
